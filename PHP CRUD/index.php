@@ -1,10 +1,10 @@
 <?php include('action.php'); 
 
-if (isset($_GET['edit']))
+if (isset($_GET['update']))
 {
 
 	$edit_state = true;
-	$id = $_GET['edit'];
+	$id = $_GET['update'];
 
 	$rec = mysqli_query($db, "SELECT * FROM users WHERE id = $id");
 	$record = mysqli_fetch_array($rec);
@@ -58,10 +58,10 @@ if (isset($_GET['edit']))
 							<td><?php echo $row['user_email']; ?></td>
 							<td><?php echo $row['user_uid']; ?></td>
 						<td>
-							<a href="index.php?edit=<?php echo $row['id']; ?>">Edit</a>
+							<a href="index.php?update=<?php echo $row['id']; ?>">Edit</a>
 						</td>
 						<td>
-							<a href="#">Delete</a>
+							<a href="action.php?del=<?php echo $row['id']; ?>">Delete</a>
 					</td>
 				</tr>
 		<?php	}	?>
@@ -95,7 +95,7 @@ if (isset($_GET['edit']))
 		<?php if ($edit_state == false): ?>
 			<button type="submit" name="save" class="btn">Save</button>
 		<?php else: ?>
-			<button type="submit" name="update" class="btn">Edit</button>
+			<button type="submit" name="update" class="btn">Update</button>
 		<?php endif ?>
 		
 		

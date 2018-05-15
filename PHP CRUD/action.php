@@ -33,11 +33,11 @@ if (isset($_POST['save']))
 
 if (isset($_POST['update']))
 {
-	$name = mysqli_real_escape_string($_POST['name']);
-	$lastname = mysqli_real_escape_string($_POST['lastname']);
-	$email = mysqli_real_escape_string($_POST['email']);
-	$username = mysqli_real_escape_string($_POST['username']);
-	$id = mysqli_real_escape_string($_POST['id']);
+	$name = $_POST['name'];
+	$lastname = $_POST['last'];
+	$email = $_POST['email'];
+	$username = $_POST['username'];
+	$id = $_POST['id'];
 
 
 
@@ -49,6 +49,15 @@ if (isset($_POST['update']))
 
 $results = mysqli_query($db, "SELECT * FROM users");
 
+
+
+if (isset($_GET['del']))
+{
+	$id = $_GET['del'];
+	mysqli_query($db, "DELETE from users WHERE id = $id");
+	$_SESSION['msg'] = "Successfully Deleted!";
+	header("Location: index.php");
+}
 
 
 
