@@ -8,6 +8,8 @@ $lastname = "";
 $email = "";
 $username = "";
 $pwd = "";
+$edit_state = false;
+$id = 0;
 
 
 $db = mysqli_connect('localhost', 'root', '', 'nissiel');
@@ -26,6 +28,22 @@ if (isset($_POST['save']))
 	$_SESSION['msg'] = "Success!";
 	header('Location: index.php');
 
+}
+
+
+if (isset($_POST['update']))
+{
+	$name = mysqli_real_escape_string($_POST['name']);
+	$lastname = mysqli_real_escape_string($_POST['lastname']);
+	$email = mysqli_real_escape_string($_POST['email']);
+	$username = mysqli_real_escape_string($_POST['username']);
+	$id = mysqli_real_escape_string($_POST['id']);
+
+
+
+	mysqli_query($db, "UPDATE users SET user_first='$name', user_last='$lastname', user_email='$email', user_uid='$username' WHERE id = $id");
+	$_SESSION['msg'] = "Successfully Updated!";
+	header("Location: index.php");
 }
 
 

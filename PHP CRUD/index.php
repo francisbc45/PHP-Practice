@@ -1,4 +1,22 @@
-<?php include('action.php'); ?>
+<?php include('action.php'); 
+
+if (isset($_GET['edit']))
+{
+
+	$edit_state = true;
+	$id = $_GET['edit'];
+
+	$rec = mysqli_query($db, "SELECT * FROM users WHERE id = $id");
+	$record = mysqli_fetch_array($rec);
+	$name = $record['user_first'];
+	$lastname = $record['user_last'];
+	$email = $record['user_email'];
+	$username = $record['user_uid'];
+	$id = $record['id'];
+}
+
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +58,7 @@
 							<td><?php echo $row['user_email']; ?></td>
 							<td><?php echo $row['user_uid']; ?></td>
 						<td>
-							<a href="#">Edit</a>
+							<a href="index.php?edit=<?php echo $row['id']; ?>">Edit</a>
 						</td>
 						<td>
 							<a href="#">Delete</a>
@@ -50,30 +68,36 @@
 			</tbody>
 	</table>
 <form method="POST" action="action.php">
+	<input type="hidden" name = "id" value="<?php echo $id; ?>"></input>
 	<div class="input-group">
 		<label>FirstName</label>
-		<input type="text" name="name">
+		<input type="text" name="name" value="<?php echo $name; ?>">
 
 	</div>
 	<div class="input-group">
 		<label>LastName</label>
-		<input type="text" name="last">
+		<input type="text" name="last" value="<?php echo $lastname; ?>">
 	</div>
 	<div class="input-group">
 		<label>Email</label>
-		<input type="text" name="email">
+		<input type="text" name="email" value="<?php echo $email; ?>">
 		
 	</div>
 	<div class="input-group">
 		<label>Username</label>
-		<input type="text" name="username">
+		<input type="text" name="username" value="<?php echo $username; ?>">
 	</div>
 	<div class="input-group">
 		<label>Password</label>
 		<input type="password" name="password">
 	</div>
 	<div class="input-group">
-		<button type="submit" name="save" class="btn">Save</button>
+		<?php if ($edit_state == false): ?>
+			<button type="submit" name="save" class="btn">Save</button>
+		<?php else: ?>
+			<button type="submit" name="update" class="btn">Edit</button>
+		<?php endif ?>
+		
 		
 	</div>
 </form>
