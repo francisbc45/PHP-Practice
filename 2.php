@@ -9,47 +9,32 @@ include_once 'view.php';
 <head>
 <meta charset="utf-8">
 	<title>Practice</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
 
-<table class="column">
-	<tr>
-	<td>First Name</td>
+<table>
+	<thead>
+		<tr>
+			<th>FirstName</th>
+			<th>LastName</th>
+			<th>Email</th>
+			<th>Username</th>
+			<th colspan="2">Action</th>
+		</tr>
+	</thead>
+		<tbody>
+			<tr>
+				<?php
+				foreach ($result as $row) 
+				{
 
-		<?php 
-		foreach ($result as $row) 
-		{
-			echo "<table>";
-
-			echo "<tr>";
-
-			echo "<td>".$row["user_first"]."</td>";
-
-			echo "<br>";
-
-			echo $row["user_last"];
-
-			echo "<br>";
-
-			echo $row["user_email"];
-
-			echo "<br>";
-
-			echo $row["user_uid"];
-
-			echo "<br>";
-
-			echo "</tr>";
-
-			echo "</table>";
-			
-		}
-
-
-		 ?>
-		
-</tr>
+				}
+				
+				?>
+			</tr>
+		</tbody>
 </table>
 
 
