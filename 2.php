@@ -19,7 +19,7 @@
 		<br>
 		<input type="password" name="password" placeholder="Password">
 		<br>
-		<button type="submit" name="submit">Submit</button>
+		<button type="submit" name="submit">Submits</button>
 	</form>
 
 
